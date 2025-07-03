@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<VBox xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      spacing="10" alignment="TOP_LEFT"
+      style="-fx-background-color: #33FFFF; -
+      fx-font-family: Arial; -fx-padding: 10;"
+      fx:controller="org.de190006.cinestar.cinestarpe_springboot.controllers.MovieController">
+    <Label text="Movies Management Page" style="-fx-font-size: 18px; -fx-text-fill: black;" />
+
+    <Label fx:id="errorLabel" textFill="red" visible="false" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <ComboBox fx:id="searchTypeComboBox" promptText="Search by..." style="-fx-background-color: white; -fx-text-fill: black;">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Movie Name"/>
+                    <String fx:value="Director"/>
+                    <String fx:value="Actor"/>
+                    <String fx:value="Status"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <TextField fx:id="searchField" promptText="Search by movie name or director..." style="-fx-background-color: white; -fx-text-fill: black;"/>
+        <Button text="Search" onAction="#onSearch"/>
+        <Button text="Show All" onAction="#onShowAll"/>
+    </HBox>
+
+    <GridPane hgap="5" vgap="5" style="-fx-background-color: transparent;">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="16.6"/>
+            <ColumnConstraints percentWidth="16.6"/>
+            <ColumnConstraints percentWidth="16.6"/>
+            <ColumnConstraints percentWidth="16.6"/>
+            <ColumnConstraints percentWidth="16.6"/>
+            <ColumnConstraints percentWidth="16.6"/>
+        </columnConstraints>
+        <Label text="Movie Name" GridPane.columnIndex="0"/>
+        <Label text="Duration (min)" GridPane.columnIndex="1"/>
+        <Label text="Actor" GridPane.columnIndex="2"/>
+        <Label text="Status" GridPane.columnIndex="3"/>
+        <Label text="Director" GridPane.columnIndex="4"/>
+        <Label text="Action" GridPane.columnIndex="5"/>
+
+        <TextField fx:id="movieNameField" GridPane.rowIndex="1" GridPane.columnIndex="0" promptText="Movie Name"/>
+        <TextField fx:id="durationField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <TextField fx:id="actorField" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+        <ComboBox fx:id="statusComboBox" GridPane.rowIndex="1" GridPane.columnIndex="3">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="active"/>
+                    <String fx:value="inactive"/>
+                    <String fx:value="coming"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <ComboBox fx:id="directorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+        <Button text="Add" GridPane.rowIndex="1" GridPane.columnIndex="5" onAction="#onAddMovie"/>
+    </GridPane>
+
+    <TableView fx:id="moviesTable" style="-fx-background-color: #33FF33;" onMouseClicked="#onTableClick">
+        <columns>
+            <TableColumn text="Name" fx:id="nameColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="movieName"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Duration" fx:id="durationColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="duration"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Actor" fx:id="actorColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="actor"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Status" fx:id="statusColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="status"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Director" fx:id="directorColumn">
+                <cellValueFactory>
+                    <PropertyValueFactory property="director"/>
+                </cellValueFactory>
+            </TableColumn>
+            <TableColumn text="Actions" fx:id="actionsColumn"/>
+        </columns>
+    </TableView>
+
+    <VBox fx:id="updateForm" visible="false" spacing="5" style="-fx-background-color: transparent;">
+        <Label text="Update Movie" style="-fx-font-size: 18px; -fx-text-fill: black;" />
+        <GridPane hgap="5" vgap="5">
+            <Label text="Movie Name" GridPane.columnIndex="0"/>
+            <Label text="Duration (min)" GridPane.columnIndex="1"/>
+            <Label text="Actor" GridPane.columnIndex="2"/>
+            <Label text="Status" GridPane.columnIndex="3"/>
+            <Label text="Director" GridPane.columnIndex="4"/>
+            <Label text="Action" GridPane.columnIndex="5"/>
+
+            <TextField fx:id="editMovieNameField" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="editDurationField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <TextField fx:id="editActorField" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <ComboBox fx:id="editStatusComboBox" GridPane.rowIndex="1" GridPane.columnIndex="3">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="active"/>
+                        <String fx:value="inactive"/>
+                        <String fx:value="coming"/>
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <ComboBox fx:id="editDirectorComboBox" GridPane.rowIndex="1" GridPane.columnIndex="4"/>
+            <HBox spacing="5" GridPane.rowIndex="1" GridPane.columnIndex="5">
+                <Button text="Save" onAction="#onUpdateMovie"/>
+                <Button text="Cancel" onAction="#onCancelUpdate"/>
+            </HBox>
+        </GridPane>
+    </VBox>
+</VBox>

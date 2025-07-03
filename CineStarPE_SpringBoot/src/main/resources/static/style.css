@@ -1,0 +1,48 @@
+.root {
+    -fx-background-color: #f4f4f4;
+}
+
+.login-container {
+    -fx-background-color: white;
+    -fx-padding: 20;
+    -fx-spacing: 15;
+    -fx-alignment: center;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+
+}
+
+.text-field, .password-field {
+    -fx-pref-width: 250;
+    -fx-pref-height: 35;
+}
+
+.login-button {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: white;
+    -fx-pref-width: 250;
+    -fx-pref-height: 35;
+}
+
+.login-container {}
+
+.text-field, .password-field {
+    -fx-pref-width: 250;
+    -fx-pref-height: 35;
+}
+
+.login-button {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: white;
+    -fx-pref-width: 250;
+    -fx-pref-height: 35;
+}
+
+.login-button:hover {
+    -fx-background-color: #1976d2;
+}
+
+.error-label {
+    -fx-text-fill: #e53935;
+}
+
